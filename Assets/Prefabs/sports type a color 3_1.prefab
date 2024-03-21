@@ -217,7 +217,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6400000, guid: e2ec6d6a1e9236b41bc1fdcbef1662e8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e2ec6d6a1e9236b41bc1fdcbef1662e8, type: 3}
 --- !u!4 &4364087321462210173 stripped
 Transform:
@@ -225,42 +226,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4364087321462334717}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4364087321462432349 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: e2ec6d6a1e9236b41bc1fdcbef1662e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 4364087321462334717}
-  m_PrefabAsset: {fileID: 0}
---- !u!146 &8931541974296209599
-WheelCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4364087321462432349}
-  m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.5
-  m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
-    targetPosition: 0.5
-  m_SuspensionDistance: 0.3
-  m_ForceAppPointDistance: 0
-  m_Mass: 300
-  m_WheelDampingRate: 0.25
-  m_ForwardFriction:
-    m_ExtremumSlip: 0.4
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 0.5
-    m_Stiffness: 1
-  m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 1
-  m_Enabled: 1
 --- !u!1001 &5390041452127399193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -328,7 +293,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6400000, guid: e2ec6d6a1e9236b41bc1fdcbef1662e8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e2ec6d6a1e9236b41bc1fdcbef1662e8, type: 3}
 --- !u!4 &5390041452127008665 stripped
 Transform:
@@ -336,42 +302,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5390041452127399193}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5390041452127366073 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: e2ec6d6a1e9236b41bc1fdcbef1662e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 5390041452127399193}
-  m_PrefabAsset: {fileID: 0}
---- !u!146 &836298277032709527
-WheelCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5390041452127366073}
-  m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.5
-  m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
-    targetPosition: 0.5
-  m_SuspensionDistance: 0.3
-  m_ForceAppPointDistance: 0
-  m_Mass: 300
-  m_WheelDampingRate: 0.25
-  m_ForwardFriction:
-    m_ExtremumSlip: 0.4
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 0.5
-    m_Stiffness: 1
-  m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 1
-  m_Enabled: 1
 --- !u!1001 &7578614874893404102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -435,44 +365,9 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6400000, guid: e2ec6d6a1e9236b41bc1fdcbef1662e8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e2ec6d6a1e9236b41bc1fdcbef1662e8, type: 3}
---- !u!1 &7578614874893369702 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: e2ec6d6a1e9236b41bc1fdcbef1662e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 7578614874893404102}
-  m_PrefabAsset: {fileID: 0}
---- !u!146 &1354133633396552939
-WheelCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7578614874893369702}
-  m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.5
-  m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
-    targetPosition: 0.5
-  m_SuspensionDistance: 0.3
-  m_ForceAppPointDistance: 0
-  m_Mass: 300
-  m_WheelDampingRate: 0.25
-  m_ForwardFriction:
-    m_ExtremumSlip: 0.4
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 0.5
-    m_Stiffness: 1
-  m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 1
-  m_Enabled: 1
 --- !u!4 &7578614874893540678 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: e2ec6d6a1e9236b41bc1fdcbef1662e8,
@@ -546,44 +441,9 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6400000, guid: e2ec6d6a1e9236b41bc1fdcbef1662e8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e2ec6d6a1e9236b41bc1fdcbef1662e8, type: 3}
---- !u!1 &8619228842072184820 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: e2ec6d6a1e9236b41bc1fdcbef1662e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 8619228842072084820}
-  m_PrefabAsset: {fileID: 0}
---- !u!146 &1913077032949605052
-WheelCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8619228842072184820}
-  m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.5
-  m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
-    targetPosition: 0.5
-  m_SuspensionDistance: 0.3
-  m_ForceAppPointDistance: 0
-  m_Mass: 300
-  m_WheelDampingRate: 0.25
-  m_ForwardFriction:
-    m_ExtremumSlip: 0.4
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.8
-    m_AsymptoteValue: 0.5
-    m_Stiffness: 1
-  m_SidewaysFriction:
-    m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 1
-  m_Enabled: 1
 --- !u!4 &8619228842072214484 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: e2ec6d6a1e9236b41bc1fdcbef1662e8,

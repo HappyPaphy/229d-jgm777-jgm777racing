@@ -10,7 +10,7 @@ public class FollowPlayer : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform position_FrontCam, position_ThirdPersonCam;
     [SerializeField] private KeyCode switchCam = KeyCode.Q; // KeyCode.U
-    [SerializeField] KeyCode moveForwardKey = KeyCode.W; // KeyCode.I
+    [SerializeField] private KeyCode moveForwardKey = KeyCode.W; // KeyCode.I
     //[SerializeField] private float camMoveSpeed = 10f;
     //[SerializeField] private float offsetZ_ThirdPersonCam_ZoomNormal, offsetZ_ThirdPersonCam_ZoomOut;
 
