@@ -18,17 +18,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] KeyCode rotateRightKey = KeyCode.D; // KeyCode.L
 
     [SerializeField] private float moveSpeed = 20f, rotateSpeed = 90f;
+    [SerializeField] private float rotateLimitBalanced
+
+    [SerializeField] private Rigidbody rb;
 
     void Start()
     {
-        
+        Rigidbody rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
         PlayerMovement();
-
-       
+        PlayerRotationLimitControl();
     }
 
     private void PlayerMovement()
@@ -49,6 +51,14 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKey(rotateRightKey) && (Input.GetKey(moveForwardKey) || Input.GetKey(moveBackwardKey)))
         {
             transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
+        }
+    }
+
+    private void PlayerRotationLimitControl()
+    {
+        if(transform.rotation.z < -50)
+        {
+            transform.Rotate(Vector3.forward * rotateLimitBalanced * Time.deltaTime, Space.Self);
         }
     }
 
