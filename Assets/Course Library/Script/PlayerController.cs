@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,8 +22,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Vector3 COM; // center Of Mass
 
+    [SerializeField] private AudioClip explosionSound;
+    [SerializeField] private GameObject explosionEffect;
+
+    [SerializeField] private int curHP;
+    public int CurHP { get { return curHP; } set { curHP = value; } }
+
+    [SerializeField] private int maxHP;
+    public int MaxHP { get { return maxHP; } set { maxHP = value; } }
+
     void Start()
     {
+        curHP = maxHP;
         Rigidbody rb = GetComponent<Rigidbody>();
     }
 
@@ -57,6 +68,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "explosionBarrel")
+        {
+            TakeDamage(20);
+        }
+    }
+
     private void PlayerRotationLimitControl()
     {
         rb.centerOfMass = COM;
@@ -75,11 +94,34 @@ public class PlayerController : MonoBehaviour
         {
             COM.x = 0;
         }
-
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void TakeDamage(int damage)
     {
-        
+        curHP -= damage;
+
+        if (curHP <= 0)
+        {
+            Debug.Log("Player Died");
+
+            if (explosionSound)
+            {
+                AudioSource.PlayClipAtPoint(explosionSound, transform.position);
+            }
+
+            if (explosionEffect)
+            {
+                Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            }
+
+            Destroy(this);
+
+            return;
+        }
+
+        if (curHP <= 0)
+        {
+            curHP = 0;
+        }
     }
 }

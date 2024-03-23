@@ -1,0 +1,61 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using static SimpleCollectibleScript;
+
+public class ExplosionBarrel : MonoBehaviour
+{
+    [SerializeField] private AudioClip explosionSound;
+    //[SerializeField] private GameObject explosionEffect;
+    [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private Collider collider;
+    [SerializeField] private ParticleSystem explosionEffect;
+
+
+    [SerializeField] private int damage;
+    public int Damage { get { return damage; } set { damage = value; } }
+
+    void Start()
+    {
+        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+        Collider collider = GetComponent<Collider>();
+    }
+
+    void Update()
+    {
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Hit Player");
+            StartCoroutine(DestroyGameObjectOnTime(4f));
+            Explode();
+        }
+    }
+
+    public void Explode()
+    {
+        if (explosionSound)
+        {
+            AudioSource.PlayClipAtPoint(explosionSound, transform.position);
+        }
+            
+        if (explosionEffect)
+        {
+            //Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            explosionEffect.Play();
+        }
+    }
+
+    IEnumerator DestroyGameObjectOnTime(float time)
+    {
+        Debug.Log("Destroying Object");
+        meshRenderer.enabled = false;
+        collider.enabled = false;
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
+    }
+}
