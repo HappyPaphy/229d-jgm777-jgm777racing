@@ -22,7 +22,15 @@ public class SceneChanger : MonoBehaviour
 
     void Start()
     {
-        
+        if(tutorialUI != null)
+        {
+            tutorialUI.SetActive(false);
+        }
+
+        if (creditUI != null)
+        {
+            creditUI.SetActive(false);
+        }
     }
 
     void Update()
@@ -37,12 +45,18 @@ public class SceneChanger : MonoBehaviour
 
     public void MainMenuScene()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenuScene");
     }
 
     public void PlayGameScene()
     {
         SceneManager.LoadScene("PlayScene");
+    }
+
+    public void QuitGameScene()
+    {
+        Debug.Log("Quit Game");
+        Application.Quit();
     }
 
     public void OpenCreditUI()
@@ -57,12 +71,12 @@ public class SceneChanger : MonoBehaviour
 
     public void OpenTutorialUI()
     {
-        creditUI.SetActive(true);
+        tutorialUI.SetActive(true);
     }
 
     public void CloseTutorialUI()
     {
-        creditUI.SetActive(false);
+        tutorialUI.SetActive(false);
     }
 
 
