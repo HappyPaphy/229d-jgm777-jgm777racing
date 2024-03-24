@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -23,7 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Vector3 COM; // center Of Mass
 
-    [SerializeField] private AudioClip explosionSound;
+    [SerializeField] private AudioSource explosionSound;
     [SerializeField] private ParticleSystem explosionEffect;
 
     [SerializeField] private ParticleSystem[] collectEffect;
@@ -33,6 +34,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Collider[] collider;
     [SerializeField] private bool isPlayerDied = false;
     [SerializeField] private bool isOnGround = false;
+
+    [SerializeField] public int numRing = 0;
+    [SerializeField] public SceneChanger sceneChanger;
 
     public int curHP;
     public int CurHP { get { return curHP; } set { curHP = value; } }
@@ -146,7 +150,7 @@ public class PlayerController : MonoBehaviour
 
             if (explosionSound)
             {
-                AudioSource.PlayClipAtPoint(explosionSound, transform.position);
+                explosionSound.Play();
             }
 
             if (explosionEffect)
@@ -169,7 +173,8 @@ public class PlayerController : MonoBehaviour
    private void Die()
    {
         isPlayerDied = true;
-   }
+        sceneChanger.YouLoseUI();
+    }
 
     IEnumerator DestroyGameObjectOnTime(float time)
     {
@@ -186,6 +191,7 @@ public class PlayerController : MonoBehaviour
         }
 
         yield return new WaitForSeconds(time);
+        SceneChanger.instance.RestartScene();
     }
 
     //index0 = coin, index1 = health, index2 = ring

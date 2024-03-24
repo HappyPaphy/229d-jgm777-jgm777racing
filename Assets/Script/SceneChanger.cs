@@ -19,11 +19,18 @@ public class SceneChanger : MonoBehaviour
     [SerializeField] private Button button_backTutorialUI;
     [SerializeField] private GameObject tutorialUI;
 
+    [SerializeField] private GameObject youWinUI;
+    [SerializeField] private GameObject youLoseUI;
+
     [SerializeField] public SoundManager soundManager;
+
+    public static SceneChanger instance;
     
 
     void Start()
     {
+        instance = this;
+
         if(tutorialUI != null)
         {
             tutorialUI.SetActive(false);
@@ -32,6 +39,16 @@ public class SceneChanger : MonoBehaviour
         if (creditUI != null)
         {
             creditUI.SetActive(false);
+        }
+
+        if (youWinUI != null)
+        {
+            youWinUI.SetActive(false);
+        }
+
+        if (youLoseUI != null)
+        {
+            youLoseUI.SetActive(false);
         }
     }
 
@@ -87,5 +104,17 @@ public class SceneChanger : MonoBehaviour
     {
         soundManager.UIClickSound();
         tutorialUI.SetActive(false);
+    }
+
+    public void YouWinUI()
+    {
+        soundManager.WinSound();
+        youWinUI.SetActive(true);
+    }
+
+    public void YouLoseUI()
+    {
+        soundManager.LoseSound();
+        youLoseUI.SetActive(true);
     }
 }

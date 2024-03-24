@@ -17,15 +17,18 @@ public class SimpleCollectibleScript : MonoBehaviour {
 
     [SerializeField] private GameObject collectEffect;
 
-    [SerializeField] private int coin;
-    public int Coin { get { return coin; } set { coin = value; } }
+    //[SerializeField] private int coin;
+    
+    //public int Coin { get { return coin; } set { coin = value; } }
 
 	[SerializeField] public PlayerController playerController;
+
+	public static SimpleCollectibleScript instance;
 
     // Use this for initialization
     void Start () 
 	{
-		
+		instance = this;
 	}
 	
 	// Update is called once per frame
@@ -67,7 +70,7 @@ public class SimpleCollectibleScript : MonoBehaviour {
 		{
 			playerController.CollectEfect(0); // 0 = Coin
             playerController.CollectSound(0); // 0 = Coin
-            coin += 300;
+            //coin += 300;
             Destroy(gameObject);
         }
 		else if (CollectibleType == CollectibleTypes.HealthItem) 
@@ -87,6 +90,15 @@ public class SimpleCollectibleScript : MonoBehaviour {
 		}
         else if (CollectibleType == CollectibleTypes.Ring)
         {
+            playerController.numRing++;
+
+			bool isOneTimePlay = false;
+            if (playerController.numRing >= 14 && isOneTimePlay == false)
+            {
+				isOneTimePlay = true;
+                SceneChanger.instance.YouWinUI();
+            }
+
             playerController.CollectEfect(2); // 2 = ring
             playerController.CollectSound(2); // 2 = ring
             Destroy(gameObject);

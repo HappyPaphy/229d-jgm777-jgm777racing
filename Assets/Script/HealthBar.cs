@@ -7,6 +7,10 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Slider sliderHP;
     [SerializeField] private int curHP;
+
+    [SerializeField] private Text numRingText;
+    [SerializeField] private int numRing;
+
     [SerializeField] public PlayerController playerController;
 
     /*[SerializeField] private PlayerController curHP;
@@ -22,12 +26,13 @@ public class HealthBar : MonoBehaviour
     {
         sliderHP.minValue = 0;
         sliderHP.maxValue = playerController.maxHP;
-        
     }
 
     void Update()
     {
+        numRing = playerController.numRing;
         curHP = playerController.curHP;
         sliderHP.value = curHP;
+        numRingText.text = $"{numRing} / 14"; 
     }
 }

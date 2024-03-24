@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static SimpleCollectibleScript;
+using UnityEngine.Audio;
 
 public class ExplosionBarrel : MonoBehaviour
 {
-    [SerializeField] private AudioClip explosionSound;
     //[SerializeField] private GameObject explosionEffect;
     [SerializeField] private MeshRenderer[] meshRenderer;
     [SerializeField] private Collider[] collider;
     [SerializeField] private ParticleSystem explosionEffect;
+    [SerializeField] private AudioSource explosionSound;
 
 
     [SerializeField] private int damage;
@@ -40,7 +40,7 @@ public class ExplosionBarrel : MonoBehaviour
     {
         if (explosionSound)
         {
-            AudioSource.PlayClipAtPoint(explosionSound, transform.position);
+            explosionSound.Play();
         }
 
         if (explosionEffect)
