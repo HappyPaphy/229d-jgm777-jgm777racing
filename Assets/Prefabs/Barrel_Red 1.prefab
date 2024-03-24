@@ -130,8 +130,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionSound: {fileID: 8300000, guid: 3ec02c92651e3e54d877341e67a45773, type: 3}
-  meshRenderer: {fileID: 23000010912262258}
-  collider: {fileID: 64000010590847252}
+  meshRenderer:
+  - {fileID: 23000010912262258}
+  collider:
+  - {fileID: 64000010590847252}
   explosionEffect: {fileID: 7119698232152104638}
   damage: 20
 --- !u!1 &1000012881322128

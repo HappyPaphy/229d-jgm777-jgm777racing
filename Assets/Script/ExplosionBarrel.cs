@@ -7,8 +7,8 @@ public class ExplosionBarrel : MonoBehaviour
 {
     [SerializeField] private AudioClip explosionSound;
     //[SerializeField] private GameObject explosionEffect;
-    [SerializeField] private MeshRenderer meshRenderer;
-    [SerializeField] private Collider collider;
+    [SerializeField] private MeshRenderer[] meshRenderer;
+    [SerializeField] private Collider[] collider;
     [SerializeField] private ParticleSystem explosionEffect;
 
 
@@ -42,7 +42,7 @@ public class ExplosionBarrel : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(explosionSound, transform.position);
         }
-            
+
         if (explosionEffect)
         {
             //Instantiate(explosionEffect, transform.position, Quaternion.identity);
@@ -53,8 +53,17 @@ public class ExplosionBarrel : MonoBehaviour
     IEnumerator DestroyGameObjectOnTime(float time)
     {
         Debug.Log("Destroying Object");
-        meshRenderer.enabled = false;
-        collider.enabled = false;
+
+        foreach(MeshRenderer meshRndr in meshRenderer)
+        {
+            meshRndr.enabled = false;
+        }
+
+        foreach (Collider col in collider)
+        {
+            col.enabled = false;
+        }
+
         yield return new WaitForSeconds(time);
         Destroy(gameObject);
     }

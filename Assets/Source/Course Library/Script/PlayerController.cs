@@ -23,10 +23,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 COM; // center Of Mass
 
     [SerializeField] private AudioClip explosionSound;
-    [SerializeField] private GameObject explosionEffect;
+    [SerializeField] private ParticleSystem explosionEffect;
 
     [SerializeField] private MeshRenderer[] meshRenderer;
     [SerializeField] private Collider[] collider;
+    [SerializeField] private bool isPlayerDied = false;
 
     [SerializeField] private int curHP;
     public int CurHP { get { return curHP; } set { curHP = value; } }
@@ -48,26 +49,29 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerMovement()
     {
-        if(Input.GetKey(moveForwardKey))
+        if(!isPlayerDied)
         {
-            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-            /*Vector3 force = transform.TransformDirection(Vector3.forward) * moveSpeed;
-            rb.AddForce(force);*/
-        }
-        else if (Input.GetKey(moveBackwardKey))
-        {
-            transform.Translate(Vector3.forward * -moveSpeed/2 * Time.deltaTime);
-            /*Vector3 force = transform.TransformDirection(Vector3.back) * moveSpeed/2;
-            rb.AddForce(force);*/
-        }
+            if (Input.GetKey(moveForwardKey))
+            {
+                transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+                /*Vector3 force = transform.TransformDirection(Vector3.forward) * moveSpeed;
+                rb.AddForce(force);*/
+            }
+            else if (Input.GetKey(moveBackwardKey))
+            {
+                transform.Translate(Vector3.forward * -moveSpeed / 2 * Time.deltaTime);
+                /*Vector3 force = transform.TransformDirection(Vector3.back) * moveSpeed/2;
+                rb.AddForce(force);*/
+            }
 
-        if (Input.GetKey(rotateLeftKey) && (Input.GetKey(moveForwardKey) || Input.GetKey(moveBackwardKey)))
-        {
-            transform.Rotate(Vector3.up * -rotateSpeed * Time.deltaTime);
-        }
-        else if (Input.GetKey(rotateRightKey) && (Input.GetKey(moveForwardKey) || Input.GetKey(moveBackwardKey)))
-        {
-            transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
+            if (Input.GetKey(rotateLeftKey) && (Input.GetKey(moveForwardKey) || Input.GetKey(moveBackwardKey)))
+            {
+                transform.Rotate(Vector3.up * -rotateSpeed * Time.deltaTime);
+            }
+            else if (Input.GetKey(rotateRightKey) && (Input.GetKey(moveForwardKey) || Input.GetKey(moveBackwardKey)))
+            {
+                transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
+            }
         }
     }
 
@@ -105,6 +109,7 @@ public class PlayerController : MonoBehaviour
 
         if (curHP <= 0)
         {
+            Die();
             Debug.Log("Player Died");
 
             if (explosionSound)
@@ -114,7 +119,8 @@ public class PlayerController : MonoBehaviour
 
             if (explosionEffect)
             {
-                Instantiate(explosionEffect, transform.position, Quaternion.identity);
+                explosionEffect.Play();
+                //Instantiate(explosionEffect, transform.position, Quaternion.identity);
             }
 
             StartCoroutine(DestroyGameObjectOnTime(4f));
@@ -128,7 +134,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   
+   private void Die()
+   {
+        isPlayerDied = true;
+   }
 
     IEnumerator DestroyGameObjectOnTime(float time)
     {
