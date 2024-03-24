@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip explosionSound;
     [SerializeField] private GameObject explosionEffect;
 
+    [SerializeField] private MeshRenderer[] meshRenderer;
+    [SerializeField] private Collider[] collider;
+
     [SerializeField] private int curHP;
     public int CurHP { get { return curHP; } set { curHP = value; } }
 
@@ -114,7 +117,7 @@ public class PlayerController : MonoBehaviour
                 Instantiate(explosionEffect, transform.position, Quaternion.identity);
             }
 
-            Destroy(this);
+            StartCoroutine(DestroyGameObjectOnTime(4f));
 
             return;
         }
@@ -123,5 +126,24 @@ public class PlayerController : MonoBehaviour
         {
             curHP = 0;
         }
+    }
+
+   
+
+    IEnumerator DestroyGameObjectOnTime(float time)
+    {
+        Debug.Log("Destroying Object");
+
+        foreach(MeshRenderer meshRndr in meshRenderer)
+        {
+            meshRndr.enabled = false;
+        }
+
+        foreach (Collider col in collider)
+        {
+            col.enabled = false;
+        }
+
+        yield return new WaitForSeconds(time);
     }
 }

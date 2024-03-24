@@ -204,12 +204,12 @@ MonoBehaviour:
   rotateSpeed: 90
   rotateLimitBalanced: 0
   rb: {fileID: 726250811}
-  COM: {x: 0, y: 0, z: 0}
+  COM: {x: 0, y: -0.5, z: 0}
   explosionSound: {fileID: 8300000, guid: 3ec02c92651e3e54d877341e67a45773, type: 3}
   explosionEffect: {fileID: 1000011797152326, guid: 202817a0d1e169b45a8108a10e7cab07,
     type: 3}
-  curHP: 0
-  maxHP: 0
+  curHP: 100
+  maxHP: 100
 --- !u!1 &670776738358431804
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,9 +648,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6400000, guid: 52a48bd127e442749a9f7211b496fc99, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6400002, guid: 52a48bd127e442749a9f7211b496fc99, type: 3}
       propertyPath: m_Convex
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400004, guid: 52a48bd127e442749a9f7211b496fc99, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400006, guid: 52a48bd127e442749a9f7211b496fc99, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400008, guid: 52a48bd127e442749a9f7211b496fc99, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52a48bd127e442749a9f7211b496fc99, type: 3}
