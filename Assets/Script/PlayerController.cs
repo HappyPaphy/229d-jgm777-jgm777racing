@@ -26,9 +26,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip explosionSound;
     [SerializeField] private ParticleSystem explosionEffect;
 
+    [SerializeField] private ParticleSystem[] collectEffect;
+    [SerializeField] private AudioSource[] collectSound;
+
     [SerializeField] private MeshRenderer[] meshRenderer;
     [SerializeField] private Collider[] collider;
     [SerializeField] private bool isPlayerDied = false;
+    [SerializeField] private bool isOnGround = false;
 
     public int curHP;
     public int CurHP { get { return curHP; } set { curHP = value; } }
@@ -40,12 +44,18 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        //StartCoroutine(MoveOnstart());
         curHP = maxHP;
         Rigidbody rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
     {
+        if (curHP >= 100)
+        {
+            curHP = 100;
+        }
+
         PlayerMovement();
         PlayerRotationLimitControl();
     }
@@ -54,24 +64,29 @@ public class PlayerController : MonoBehaviour
     {
         if(!isPlayerDied)
         {
-            if (Input.GetKey(moveForwardKey))
+            if(isOnGround)
             {
-                transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-                /*Vector3 force = transform.TransformDirection(Vector3.forward) * moveSpeed;
-                rb.AddForce(force);*/
-            }
-            else if (Input.GetKey(moveBackwardKey))
-            {
-                transform.Translate(Vector3.forward * -moveSpeed / 2 * Time.deltaTime);
-                /*Vector3 force = transform.TransformDirection(Vector3.back) * moveSpeed/2;
-                rb.AddForce(force);*/
+                if (Input.GetKey(moveForwardKey))
+                {
+                    /*transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);*/
+                    /*Vector3 force = transform.TransformDirection(Vector3.forward) * moveSpeed;
+                    rb.AddForce(force);*/
+                    rb.AddForce(rb.transform.forward * moveForce * Time.deltaTime);
+                }
+                else if (Input.GetKey(moveBackwardKey))
+                {
+                    /*transform.Translate(Vector3.forward * -moveSpeed / 2 * Time.deltaTime);*/
+                    /*Vector3 force = transform.TransformDirection(Vector3.back) * moveSpeed/2;
+                    rb.AddForce(force);*/
+                    rb.AddForce(rb.transform.forward * -moveForce / 2 * Time.deltaTime);
+                }
             }
 
-            if (Input.GetKey(rotateLeftKey) && (Input.GetKey(moveForwardKey) || Input.GetKey(moveBackwardKey)))
+            if (Input.GetKey(rotateLeftKey))
             {
                 transform.Rotate(Vector3.up * -rotateSpeed * Time.deltaTime);
             }
-            else if (Input.GetKey(rotateRightKey) && (Input.GetKey(moveForwardKey) || Input.GetKey(moveBackwardKey)))
+            else if (Input.GetKey(rotateRightKey))
             {
                 transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
             }
@@ -85,6 +100,20 @@ public class PlayerController : MonoBehaviour
             TakeDamage(20);
         }
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            isOnGround = true;
+        }
+        else
+        {
+            isOnGround = false;
+        }
+    }
+
+    
 
     private void PlayerRotationLimitControl()
     {
@@ -159,8 +188,25 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(time);
     }
 
-    public static implicit operator float(PlayerController v)
+    //index0 = coin, index1 = health, index2 = ring
+    public void CollectEfect(int index)
+    {
+        collectEffect[index].Play();
+    }
+
+    public void CollectSound(int index)
+    {
+        collectSound[index].Play();
+    }
+
+    /*IEnumerator MoveOnstart()
+    {
+        rb.AddForce(rb.transform.forward * moveForce * Time.deltaTime);
+        yield return new WaitForSeconds(1f);
+    }*/
+
+    /*public static implicit operator float(PlayerController v)
     {
         throw new NotImplementedException();
-    }
+    }*/
 }

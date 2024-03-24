@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Shootable
   - explosionBarrel
+  - Ground
   layers:
   - Default
   - TransparentFX

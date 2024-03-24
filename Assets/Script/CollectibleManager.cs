@@ -7,7 +7,8 @@ public enum Collectible
     Coin,
     HealthItem,
     PowerUp1,
-    PowerUp2
+    PowerUp2,
+    Ring
 };
 
 public class CollectibleManager : MonoBehaviour

@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class SimpleCollectibleScript : MonoBehaviour {
 
-	public enum CollectibleTypes {NoType, Coin, HealthItem, PowerUp1, PowerUp2}; // you can replace this with your own labels for the types of collectibles in your game!
+	public enum CollectibleTypes {NoType, Coin, HealthItem, PowerUp1, PowerUp2, Ring}; // you can replace this with your own labels for the types of collectibles in your game!
 
 	public CollectibleTypes CollectibleType; // this gameObject's type
 
@@ -17,11 +17,10 @@ public class SimpleCollectibleScript : MonoBehaviour {
 
     [SerializeField] private GameObject collectEffect;
 
-
     [SerializeField] private int coin;
     public int Coin { get { return coin; } set { coin = value; } }
 
-
+	[SerializeField] public PlayerController playerController;
 
     // Use this for initialization
     void Start () 
@@ -42,17 +41,22 @@ public class SimpleCollectibleScript : MonoBehaviour {
 	{
 		if (other.tag == "Player") 
 		{
-			Collect ();
+            Collect();
 		}
 	}
 
 	public void Collect()
 	{
-		if(collectSound)
-			AudioSource.PlayClipAtPoint(collectSound, transform.position);
+		/*if(collectSound)
+		{
+            AudioSource.PlayClipAtPoint(collectSound, transform.position);
+        }
+			
 		if(collectEffect)
-			Instantiate(collectEffect, transform.position, Quaternion.identity);
-
+		{
+            Instantiate(collectEffect, transform.position, Quaternion.identity);
+        }*/
+			
 		//Below is space to add in your code for what happens based on the collectible type
 
 		if (CollectibleType == CollectibleTypes.NoType) 
@@ -61,12 +65,18 @@ public class SimpleCollectibleScript : MonoBehaviour {
 		}
 		else if (CollectibleType == CollectibleTypes.Coin) 
 		{
-			coin += 300;
-		}
+			playerController.CollectEfect(0); // 0 = Coin
+            playerController.CollectSound(0); // 0 = Coin
+            coin += 300;
+            Destroy(gameObject);
+        }
 		else if (CollectibleType == CollectibleTypes.HealthItem) 
 		{
-
-		}
+            playerController.CollectEfect(1); // 1 = health
+            playerController.CollectSound(1); // 1 = health
+            playerController.curHP += 50;
+            Destroy(gameObject);
+        }
 		else if (CollectibleType == CollectibleTypes.PowerUp1) 
 		{
 
@@ -75,8 +85,11 @@ public class SimpleCollectibleScript : MonoBehaviour {
 		{
 
 		}
-		
-
-		Destroy (gameObject);
+        else if (CollectibleType == CollectibleTypes.Ring)
+        {
+            playerController.CollectEfect(2); // 2 = ring
+            playerController.CollectSound(2); // 2 = ring
+            Destroy(gameObject);
+        }
 	}
 }
