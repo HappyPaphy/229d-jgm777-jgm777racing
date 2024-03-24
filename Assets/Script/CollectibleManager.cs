@@ -12,14 +12,14 @@ public enum Collectible
 
 public class CollectibleManager : MonoBehaviour
 {
-    [SerializeField] private SimpleCollectibleScript coin;
-    public SimpleCollectibleScript Coin { get { return coin; } }
+    [SerializeField] private int coin;
+    public int Coin { get { return coin; } }
 
-    [SerializeField] private PlayerController curHP;
-    PlayerController CurHP { get { return curHP; } }
+    [SerializeField] private float curHP;
+    public float CurHP { get { return curHP; } }
 
-    [SerializeField] private PlayerController maxHP;
-    PlayerController MaxHP { get { return maxHP; } }
+    [SerializeField] private float maxHP;
+    public float MaxHP { get { return maxHP; } }
 
     public static CollectibleManager instance;
 
@@ -30,6 +30,6 @@ public class CollectibleManager : MonoBehaviour
 
     void Update()
     {
-        
+       
     }
 }

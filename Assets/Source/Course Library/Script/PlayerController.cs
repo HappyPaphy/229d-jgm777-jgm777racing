@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -29,11 +30,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Collider[] collider;
     [SerializeField] private bool isPlayerDied = false;
 
-    [SerializeField] private int curHP;
+    public int curHP;
     public int CurHP { get { return curHP; } set { curHP = value; } }
 
-    [SerializeField] private int maxHP;
+    [SerializeField] public int maxHP = 100;
     public int MaxHP { get { return maxHP; } set { maxHP = value; } }
+
+    public static PlayerController instance;
 
     void Start()
     {
@@ -154,5 +157,10 @@ public class PlayerController : MonoBehaviour
         }
 
         yield return new WaitForSeconds(time);
+    }
+
+    public static implicit operator float(PlayerController v)
+    {
+        throw new NotImplementedException();
     }
 }
