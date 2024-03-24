@@ -18,6 +18,8 @@ public class SceneChanger : MonoBehaviour
     [SerializeField] private Button button_TutorialUI;
     [SerializeField] private Button button_backTutorialUI;
     [SerializeField] private GameObject tutorialUI;
+
+    [SerializeField] public SoundManager soundManager;
     
 
     void Start()
@@ -40,45 +42,50 @@ public class SceneChanger : MonoBehaviour
 
     public void RestartScene()
     {
+        soundManager.UIClickSound();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void MainMenuScene()
     {
+        soundManager.UIClickSound();
         SceneManager.LoadScene("MainMenuScene");
     }
 
     public void PlayGameScene()
     {
+        soundManager.UIClickSound();
         SceneManager.LoadScene("PlayScene");
     }
 
     public void QuitGameScene()
     {
+        soundManager.UIClickSound();
         Debug.Log("Quit Game");
         Application.Quit();
     }
 
     public void OpenCreditUI()
     {
+        soundManager.UIClickSound();
         creditUI.SetActive(true);
     }
 
     public void CloseCreditUI()
     {
+        soundManager.UIClickSound();
         creditUI.SetActive(false);
     }
 
     public void OpenTutorialUI()
     {
+        soundManager.UIClickSound();
         tutorialUI.SetActive(true);
     }
 
     public void CloseTutorialUI()
     {
+        soundManager.UIClickSound();
         tutorialUI.SetActive(false);
     }
-
-
-
 }
