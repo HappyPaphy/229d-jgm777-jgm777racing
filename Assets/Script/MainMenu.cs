@@ -1,0 +1,96 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class MainMenu : MonoBehaviour
+{
+    [SerializeField] private Button button_MainMenu;
+    [SerializeField] private Button button_PlayGame;
+
+    [SerializeField] private Button button_CreditUI;
+    [SerializeField] private Button button_BackCreditUI;
+    [SerializeField] private GameObject creditUI;
+
+    [SerializeField] private Button button_TutorialUI;
+    [SerializeField] private Button button_BackTutorialUI;
+    [SerializeField] private GameObject tutorialUI;
+
+    [SerializeField] private Button button_QuitUI;
+    [SerializeField] private Button button_ConfirmQuitUI;
+    [SerializeField] private Button button_CancelQuitUI;
+    [SerializeField] private GameObject quitUI;
+
+    [SerializeField] private Button button_SettingUI;
+    [SerializeField] private Button button_BackSettingUI;
+    [SerializeField] private GameObject settingUI;
+
+    [SerializeField] private UIManager uiManager;
+    [SerializeField] private SoundManager soundManager;
+
+    void Start()
+    {
+        if (tutorialUI != null)
+        {
+            tutorialUI.SetActive(false);
+        }
+
+        if (creditUI != null)
+        {
+            creditUI.SetActive(false);
+        }
+
+        if (settingUI != null)
+        {
+            settingUI.SetActive(false);
+        }
+    }
+
+    void Update()
+    {
+        
+    }
+
+    public void QuitGameScene()
+    {
+        uiManager.OpenUI(creditUI, true);
+        soundManager.UIClickSound();
+        Debug.Log("Quit Game");
+    }
+
+    public void IWantToQuit()
+    {
+        Application.Quit();
+    }
+
+    public void OpenCreditUI()
+    {
+        UIManager.instance.OpenUI(creditUI, true);
+    }
+
+    public void CloseCreditUI()
+    {
+        uiManager.OpenUI(creditUI, false);
+    }
+
+    public void OpenTutorialUI()
+    {
+        uiManager.OpenUI(tutorialUI, true);
+    }
+
+    public void CloseTutorialUI()
+    {
+        uiManager.OpenUI(tutorialUI, false);
+    }
+
+    public void OpenSettingUI()
+    {
+        uiManager.OpenUI(settingUI, true);
+    }
+
+    public void CloseSettingUI()
+    {
+        uiManager.OpenUI(settingUI, false);
+    }
+}

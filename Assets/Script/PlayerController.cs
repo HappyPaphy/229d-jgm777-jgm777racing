@@ -12,10 +12,10 @@ public class PlayerController : MonoBehaviour
     private enum PlayerIndex { player1, player2 }
     [SerializeField] PlayerIndex playerIndex;
 
-    [SerializeField] KeyCode moveForwardKey = KeyCode.W; // KeyCode.I
-    [SerializeField] KeyCode moveBackwardKey = KeyCode.S; // KeyCode.K
-    [SerializeField] KeyCode rotateLeftKey = KeyCode.A; // KeyCode.J
-    [SerializeField] KeyCode rotateRightKey = KeyCode.D; // KeyCode.L
+    public KeyCode moveForwardKey;
+    public KeyCode moveBackwardKey;
+    public KeyCode rotateLeftKey;
+    public KeyCode rotateRightKey;
 
     [SerializeField] private float moveForce = 10000f;
     [SerializeField] private float moveSpeed = 20f, rotateSpeed = 90f;
@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public int numRing = 0;
     [SerializeField] public SceneChanger sceneChanger;
 
+    
+
     public int curHP;
     public int CurHP { get { return curHP; } set { curHP = value; } }
 
@@ -53,12 +55,19 @@ public class PlayerController : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (curHP >= 100)
         {
             curHP = 100;
         }
+
+        
+    }
+
+    void FixedUpdate()
+    {
+        
 
         PlayerMovement();
         PlayerRotationLimitControl();
@@ -173,7 +182,7 @@ public class PlayerController : MonoBehaviour
    private void Die()
    {
         isPlayerDied = true;
-        sceneChanger.YouLoseUI();
+        GameManager.instance.YouLoseUI();
     }
 
     IEnumerator DestroyGameObjectOnTime(float time)
@@ -204,6 +213,8 @@ public class PlayerController : MonoBehaviour
     {
         collectSound[index].Play();
     }
+
+    
 
     /*IEnumerator MoveOnstart()
     {
