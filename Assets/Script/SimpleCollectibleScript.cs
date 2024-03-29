@@ -96,7 +96,7 @@ public class SimpleCollectibleScript : MonoBehaviour {
             if (playerController.numRing >= 14 && isOneTimePlay == false)
             {
 				isOneTimePlay = true;
-                SceneChanger.instance.YouWinUI();
+                GameManager.instance.YouWinUI();
             }
 
             playerController.CollectEfect(2); // 2 = ring

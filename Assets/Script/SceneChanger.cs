@@ -33,6 +33,11 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }// MainMenuScene, PlayScene
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
     
 
     

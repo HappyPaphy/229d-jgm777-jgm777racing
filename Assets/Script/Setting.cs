@@ -5,17 +5,18 @@ using UnityEngine.UI;
 
 public class Setting : MonoBehaviour
 {
-    
     [SerializeField] private Button button_WASD_Button;
     [SerializeField] private Image wasd_UI;
 
     [SerializeField] private Button button_arrow_Button;
     [SerializeField] private Image arrow_UI;
 
+    [SerializeField] PlayerController player;
+
     public bool isSetTo_WASD_Button = true;
 
     public static Setting instance;
-    public static PlayerController player;
+    
 
     private void Awake()
     {
@@ -24,35 +25,44 @@ public class Setting : MonoBehaviour
 
     void Start()
     {
-        
+        if(isSetTo_WASD_Button == null)
+        {
+
+        }
     }
 
     void Update()
     {
-        PlayerKeyBindSetting();
+
     }
 
     public void SwitchTo_WASD_Button(bool b)
     {
+        Color alphaFull = wasd_UI.color;
+        Color alphaFade = wasd_UI.color;
+
+        alphaFull.a = 1f;
+        alphaFade.a = 0.3f;
+
         if (b)
-        {
+        { 
             Debug.Log("Change To WASD");
-            wasd_UI.CrossFadeAlpha(1f, 1f, false);
-            arrow_UI.CrossFadeAlpha(0.3f, 1f, false);
+            wasd_UI.color = alphaFull;
+            arrow_UI.color = alphaFade;
         }
         else
         {
             Debug.Log("Change To Arrow");
-            arrow_UI.CrossFadeAlpha(1f, 1f, false);
-            wasd_UI.CrossFadeAlpha(0.3f, 1f, false);
+            wasd_UI.color = alphaFade;
+            arrow_UI.color = alphaFull;
         }
 
-        isSetTo_WASD_Button = b;
+        PlayerKeyBindSetting(isSetTo_WASD_Button);
     }
 
-    void PlayerKeyBindSetting()
+    void PlayerKeyBindSetting(bool isSetToWASD)
     {
-        if (isSetTo_WASD_Button == true)
+        if (isSetToWASD == true)
         {
             player.moveForwardKey = KeyCode.W;
             player.rotateLeftKey = KeyCode.A;

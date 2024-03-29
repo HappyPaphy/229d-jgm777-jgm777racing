@@ -45,6 +45,11 @@ public class MainMenu : MonoBehaviour
         {
             settingUI.SetActive(false);
         }
+
+        if (quitUI != null)
+        {
+            quitUI.SetActive(false);
+        }
     }
 
     void Update()
@@ -59,14 +64,21 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Quit Game");
     }
 
-    public void IWantToQuit()
+    public void PlayGame()
     {
-        Application.Quit();
+        SceneChanger.instance.ChangeScene("PlayScene");
+    }
+
+    public void ExitGame()
+    {
+        SceneChanger.instance.ExitGame();
+        soundManager.UIClickSound();
+        Debug.Log("Quit Game");
     }
 
     public void OpenCreditUI()
     {
-        UIManager.instance.OpenUI(creditUI, true);
+        uiManager.OpenUI(creditUI, true);
     }
 
     public void CloseCreditUI()
@@ -92,5 +104,15 @@ public class MainMenu : MonoBehaviour
     public void CloseSettingUI()
     {
         uiManager.OpenUI(settingUI, false);
+    }
+
+    public void OpenQuitUI()
+    {
+        uiManager.OpenUI(quitUI, true);
+    }
+
+    public void CloseQuitUI()
+    {
+        uiManager.OpenUI(quitUI, false);
     }
 }
